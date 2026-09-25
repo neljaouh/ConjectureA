@@ -101,21 +101,80 @@ The tree these files were elaborated in (Lean `v4.30.0-rc2`, Mathlib `5450b53e`)
 * No file in the tree contains `sorry`, `axiom` or `native_decide` (checked by grep as well as
   by the axiom walk).
 
-To reproduce:
+## Checking the proof yourself
+
+You do not have to trust any of the above. Everything needed to re-check the proofs from
+source is in this repository plus the pinned Mathlib; the steps below were run from a fresh
+clone of this repository on macOS.
+
+**Prerequisites.** `git`, `python3` (only for the provenance script), about 10 GB of free
+disk, and [elan](https://github.com/leanprover/elan), the Lean toolchain manager:
 
 ```bash
-lake exe cache get   # pinned Mathlib objects
-lake build           # builds GrowthExponent and Verification, hence the whole chain
+curl https://elan.lean-lang.org/elan-init.sh -sSf | sh
 ```
 
-then, for the kernel replay,
+elan reads `lean-toolchain` and installs Lean `v4.30.0-rc2` the first time `lake` runs in
+this directory; you do not pick a version yourself. 16 GB of RAM is recommended for the
+build; 8 GB works but is slow.
+
+**Step 1: clone and fetch the pinned Mathlib objects.**
+
+```bash
+git clone https://github.com/neljaouh/ConjectureA.git
+cd ConjectureA
+lake exe cache get
+```
+
+This clones Mathlib at commit `5450b53e` and downloads its prebuilt objects (several GB).
+It ends with `Completed successfully!` and the directory is about 7 GB afterwards.
+
+**Step 2: build the proofs.**
+
+```bash
+lake build
+```
+
+This compiles the 463 Lean modules of this repository, in dependency order, against Mathlib.
+Nothing is precompiled here: every proof term is elaborated and kernel-checked on your
+machine. Expect hours on a laptop; Mazur's own notes recommend running nothing else heavy at
+the same time. Three things to look for in the output:
+
+* `#print axioms` lines from `ConjectureA.lean`, each ending in
+  `[propext, Classical.choice, Quot.sound]`;
+* the two messages from `Verification/ConjectureAExact.lean`:
+  `all 8 roots closed under [propext, Classical.choice, Quot.sound]` and
+  `no universal-conjecture declaration present`;
+* the final line `Build completed successfully`.
+
+If any file contained `sorry`, an unproved `axiom`, or a hypothesis smuggled into a theorem
+statement, the second check fails and so does the build.
+
+**Step 3 (optional): independent kernel replay.**
 
 ```bash
 lake env leanchecker --fresh ConjectureAZ GrowthExponent
 ```
 
-A cold build of the vendored library (463 modules) is heavy. Mazur's own reproduction notes
-recommend 16 GB or more and running one heavy job at a time; on an 8 GB machine it takes hours.
+`lake build` already runs the kernel, but through the elaborator's environment. `leanchecker
+--fresh` re-reads the compiled `.olean` files and replays every declaration into an empty
+kernel environment, so it does not trust anything the build cached. Budget about half an hour
+per module. Without `--fresh` it takes about two minutes and is a much weaker check.
+
+**Step 4 (optional): confirm the vendored files are untouched.**
+
+```bash
+python3 scripts/verify_upstream.py
+```
+
+This recomputes the SHA-256 of all 388 vendored files and compares them with the manifests
+Mazur published, so you can be sure the upstream mathematics was not edited on the way in.
+
+**What this does and does not establish.** A successful build shows that the Lean 4 kernel
+accepts these proof terms against Mathlib at the pinned commit, using only the three standard
+axioms. It does not review the mathematics of the upstream packages, which their author
+describes as AI-assisted and not independently refereed; see
+[What the proof depends on](#what-the-proof-depends-on).
 
 ## Layout
 
