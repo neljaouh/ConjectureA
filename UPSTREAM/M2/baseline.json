@@ -1,0 +1,13 @@
+{
+  "schema": "collatz-predecessor-density-baseline-v2",
+  "package_commit": "830b9d3f38f2a8da8cd921bf6a9310dd69336fd0",
+  "url": "https://www.proofatlas.ai/papers/positive-density-log-time-collatz/positive-density-log-time-collatz-v2.1-source.zip",
+  "sha256": "23f5cac4d66e696401144658752cf180a13ce70373a122f00693e1e1fe969c1f",
+  "bytes": 914975,
+  "archive_prefix": "positive-density-log-time-collatz/",
+  "release_manifest_schema": "collatz-positive-density-minimal-release-v1",
+  "source_manifest_schema": "collatz-positive-density-slim-source-v1",
+  "license": "Apache-2.0 with retained upstream notices",
+  "role": "Public slim version 2.1 source dependency, unchanged by this extension",
+  "publication_scope": "Only the three announced companion theorem roots and necessary support; no restoration of the superseded oversized archive."
+}

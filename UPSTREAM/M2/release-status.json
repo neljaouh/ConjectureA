@@ -1,0 +1,20 @@
+{
+  "schema": "collatz-predecessor-density-release-status-v1",
+  "status": "VERIFIED_COMPANION_ON_PUBLIC_SLIM_BASELINE",
+  "source_package_version": "1.1",
+  "companion_manuscript_version": "1.0",
+  "source_classification": "NARROWED_DERIVATIVE_FRESHLY_REPLAYED_ON_SLIM_BASELINE",
+  "fresh_lean_replay_completed": true,
+  "public_root_axiom_check_completed": true,
+  "verification_completed_utc": "2026-09-07T07:16:31Z",
+  "freshly_compiled_modules": 11,
+  "public_theorem_roots_checked": 3,
+  "public_root_axioms": ["Classical.choice", "Quot.sound", "propext"],
+  "baseline_archive_public_download_hash_verified": true,
+  "baseline_project_sources_used": 377,
+  "dependency_artifacts_reused": true,
+  "baseline_cache_provenance_mode": "LATER_EXACT_SOURCE_LAKE_BUILD_WITH_REUSED_CURRENT_OBJECTS",
+  "historical_source_to_object_mapping_independently_authenticated": false,
+  "full_dependency_rebuild_claimed": false,
+  "publication_authorized_by_this_record": false
+}

@@ -1,0 +1,230 @@
+{
+  "schema": "collatz-predecessor-density-narrowed-sources-v1",
+  "source_classification": "NARROWED_DERIVATIVE_FRESHLY_REPLAYED_ON_SLIM_BASELINE",
+  "baseline_commit": "830b9d3f38f2a8da8cd921bf6a9310dd69336fd0",
+  "source_scope": "Ten implementation/support modules for exactly three announced roots; direct slim baseline, no restored historical module bundle.",
+  "public_roots": [
+    "CollatzPredecessorDensity.predecessors_positive_lower_density",
+    "CollatzPredecessorDensity.nonconvergence_positive_lower_density_of_counterexample",
+    "CollatzPredecessorDensity.universal_reaches_one_of_arbitrarily_dense_convergence"
+  ],
+  "extension_modules_in_build_order": [
+    "Erdos1135.StoppingTime",
+    "Erdos1135.ND.PositiveDensity.PredecessorCountSupport",
+    "Erdos1135.ND.PositiveDensity.PredecessorAnalyticSupport",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetSeedNonreturn",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetResidueCoverage",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetFrozenSeed",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetTerminalCensus",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetPredecessorCount",
+    "Erdos1135.ND.PositiveDensity.GeneralTargetPositiveDensity",
+    "Erdos1135.ND.PositiveDensity.NonconvergenceDensityAmplification"
+  ],
+  "files": [
+    {
+      "path": "Erdos1135/StoppingTime.lean",
+      "bytes": 2419,
+      "sha256": "d5a5c09281d2b53c648bb4f4233f77f3156109d99e711799cc6ad0c16fea575f",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.StoppingTime"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetSeedNonreturn.lean",
+      "bytes": 7607,
+      "sha256": "cd8b50665a77f9b23020c940cb16dea9976419c24e9a62539bf467cdbed07673",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetSeedNonreturn"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetResidueCoverage.lean",
+      "bytes": 5522,
+      "sha256": "4ea7d359c9bef9fdee93ceab8a5be9842a67d5c80e00eb037cf02006f2f26463",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetResidueCoverage"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetFrozenSeed.lean",
+      "bytes": 5587,
+      "sha256": "c7728eeae7c5fcf00ac22766f21c9363cb56919ad53143472066c926d0f3ee80",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetFrozenSeed"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetTerminalCensus.lean",
+      "bytes": 14836,
+      "sha256": "a21009e65f764d848755404965f5fb287bcdc67fd61d9aed259cee1966c16db6",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetTerminalCensus"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetPredecessorCount.lean",
+      "bytes": 4476,
+      "sha256": "d2d33e3a442200c429a7910ca4c78a4feaf9f1fc2bd9963ade165a94896d18c3",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetPredecessorCount"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/GeneralTargetPositiveDensity.lean",
+      "bytes": 3245,
+      "sha256": "5e23daa11fc9bd22ce0bc6d303ce8f56057aa8a194e8a201f8404521ed31b667",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.GeneralTargetPositiveDensity"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/NonconvergenceDensityAmplification.lean",
+      "bytes": 2908,
+      "sha256": "50a4bb76403d4b6d2f51b27e2171652e8bf9a5990a76bab0bf036cd19903852f",
+      "origin": "narrowed_extension_support",
+      "module": "Erdos1135.ND.PositiveDensity.NonconvergenceDensityAmplification"
+    },
+    {
+      "path": "CollatzPredecessorDensity.lean",
+      "bytes": 2105,
+      "sha256": "eb5aef151a767622d1a28ee0dce1473e8b85aafa30f434809462193fa1d383f9",
+      "origin": "public_interface_audit_or_reproduction_input",
+      "module": "CollatzPredecessorDensity"
+    },
+    {
+      "path": "Verification/ReleaseAudit.lean",
+      "bytes": 3030,
+      "sha256": "30a8906e927f914f427c8062c2423bf9bb4d0de4108db90266a398ba6ad34c12",
+      "origin": "public_interface_audit_or_reproduction_input",
+      "module": "Verification.ReleaseAudit"
+    },
+    {
+      "path": "lakefile.toml",
+      "bytes": 455,
+      "sha256": "5be40cf42e668b9b03061511044275677e149ecf1512c452427a419672d4a0d0",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "lake-manifest.json",
+      "bytes": 3599,
+      "sha256": "eed092212aab4dfd809f3278d01beae5e8ac83a3ae72c43b5a4cecf4b4bba663",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "lean-toolchain",
+      "bytes": 29,
+      "sha256": "ce4c4e3d87434b9663f46de25ce34b48a0cf0d392e0a320a0787b4674a2d7b61",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "baseline.json",
+      "bytes": 847,
+      "sha256": "0638c522c6a86945a694b2b712ec005dc35ee9990dd84943731fb83fd6611fb2",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/assemble.py",
+      "bytes": 10225,
+      "sha256": "43b1a1ec805be138e40b09db7b9f426416def777bfe3af4a03ff91102583c170",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/replay.py",
+      "bytes": 12544,
+      "sha256": "9f5185a04695f8ded302135de953818b7863c4714c501257733c086ae08937dd",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/verify-assembly.py",
+      "bytes": 985,
+      "sha256": "4efa22f44934b82309cf8f1459b8ef1bf4e62017032847c7b8f294f9398436bb",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/serial-lake.py",
+      "bytes": 1780,
+      "sha256": "1324cb46cde1abcccc081bc5d1ba1ace63a79b9ad7ef4996e459da93af5a34dd",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/lake-bounded.sh",
+      "bytes": 476,
+      "sha256": "cab62e64db062ceb7947ec78e5a29fe64148fe6aa5d779bf79dc74a57eaba493",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/lean-one-worker.sh",
+      "bytes": 205,
+      "sha256": "6d2ad8fa63263a475a0d6e4ad53b06b6ec049eaa49f0af3db2c6479217401bff",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "scripts/reproduce.sh",
+      "bytes": 739,
+      "sha256": "3060653fece9a5e3cc4f3185ee5905b882ab0301bcd0bb10538e3564482b5fee",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "README.md",
+      "bytes": 6982,
+      "sha256": "4e5c233cfc7fc1869ade3e60936f51c769d44cd70503e14d55414912c331348e",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "REPRODUCIBILITY.md",
+      "bytes": 9892,
+      "sha256": "4f231f03225ff1bf4dcb9ee0e97379528789f1121599b8ddfdc68251c409833f",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "LICENSE",
+      "bytes": 11357,
+      "sha256": "b40930bbcf80744c86c46a12bc9da056641d722716c378f5659b9e555ef833e1",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "NOTICE",
+      "bytes": 818,
+      "sha256": "df7ac28e54e3eca1c35a456262f7cc82f4ab2c5e7352b1a1586d54fbb1105f6e",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "RIGHTS.md",
+      "bytes": 943,
+      "sha256": "de0f6376a786b7e21d12c830814842cf68e4591b120bcc82239111425afb4e14",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "license.json",
+      "bytes": 603,
+      "sha256": "cb10aeec21a61d44414f089024fa9cd1752dfb6e45579d722ef9143314ea303b",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "release-status.json",
+      "bytes": 968,
+      "sha256": "05870b324f2b047c103a7aec19248cbf44b8da230df77c9d977948afec4d3d2e",
+      "origin": "public_interface_audit_or_reproduction_input"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/PredecessorAnalyticSupport.lean",
+      "module": "Erdos1135.ND.PositiveDensity.PredecessorAnalyticSupport",
+      "origin": "minimal_companion_support_for_slim_baseline",
+      "bytes": 8413,
+      "sha256": "147fcdcae87da02a70bc7363f01cd58583e9aa32ea2fd4bb4d6330307eb4391e"
+    },
+    {
+      "path": "Erdos1135/ND/PositiveDensity/PredecessorCountSupport.lean",
+      "module": "Erdos1135.ND.PositiveDensity.PredecessorCountSupport",
+      "origin": "minimal_companion_support_for_slim_baseline",
+      "bytes": 950,
+      "sha256": "966f7538bd099b1dd61d5905e0a1593799afc8d4c9cabfb46c8973903bd69db5"
+    },
+    {
+      "path": "evidence/verification.json",
+      "sha256": "b259a9c7af55df3d08befdf65f4ded9b6d6f0e8284e4d03c995832926bf066a3",
+      "bytes": 9169,
+      "origin": "sanitized_actual_replay_evidence"
+    }
+  ],
+  "private_source_origin_included": false,
+  "later_research_included": false,
+  "compiled_artifacts_included": false,
+  "fresh_lean_replay_completed": true,
+  "source_package_version": "1.1",
+  "companion_manuscript_version": "1.0",
+  "verification_record": "evidence/verification.json"
+}

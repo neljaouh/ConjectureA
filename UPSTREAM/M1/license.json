@@ -1,0 +1,16 @@
+{
+  "spdx_identifier": "Apache-2.0",
+  "copyright": "Copyright 2026 Lech Mazur.",
+  "scope": "Author-owned formalization code and accompanying build, verification and packaging scripts.",
+  "author_approval_date": "2026-09-05",
+  "license_file": "LICENSE",
+  "notice_file": "NOTICE",
+  "third_party_terms": "Original third-party license and attribution terms are preserved, not replaced.",
+  "excluded_from_this_grant": [
+    "paper",
+    "infographic",
+    "third-party code and external dependencies",
+    "unrelated projects"
+  ],
+  "publication_authorized_by_this_record": false
+}

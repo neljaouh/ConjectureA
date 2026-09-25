@@ -1,0 +1,8 @@
+# Lean build artefacts (regenerate with `lake build`)
+.lake/
+build/
+*.olean
+*.ilean
+*.trace
+*.hash
+.DS_Store

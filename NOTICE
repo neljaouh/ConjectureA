@@ -1,0 +1,32 @@
+ConjectureA
+Lean 4 proofs of Applegate-Lagarias Conjecture A and the 3x+1 Growth Exponent
+Conjecture for the 3x+1 (Collatz) problem.
+Copyright 2026 Naoufal El Jaouhari.
+
+The files ConjectureA.lean, ConjectureAZ.lean, GrowthExponent.lean, the
+ThreeXMinusOne/ directory and Verification/ConjectureAExact.lean are original
+to this repository and are licensed under the Apache License, Version 2.0
+(see LICENSE). Generative AI (Anthropic Claude, via Claude Code) contributed
+substantially to writing these proofs.
+
+This repository also redistributes, byte-for-byte unmodified, Lean source files
+from two Apache-2.0 packages authored by Lech Mazur:
+
+  * "Explicit Positive-Density Collatz Convergence in Logarithmic Time",
+    source package version 2.1 (the Erdos1135/ and FormalConjectures/ trees).
+    Copyright 2026 Lech Mazur. Original README, NOTICE, RIGHTS.md, license.json
+    and source manifests are kept under UPSTREAM/M1/.
+
+  * "Positive Lower Density of Collatz Predecessors" (CollatzPredecessorDensity.lean
+    and ten modules under Erdos1135/ND/PositiveDensity/ and Erdos1135/StoppingTime.lean).
+    Copyright 2026 Lech Mazur. Original README, NOTICE, RIGHTS.md, license.json
+    and source manifests are kept under UPSTREAM/M2/.
+
+The retained file under FormalConjectures/ keeps its original attribution:
+Copyright 2025 The Formal Conjectures Authors, Apache License, Version 2.0.
+
+Mathlib and the other pinned dependencies are not redistributed here and retain
+their own license and attribution terms.
+
+`scripts/verify_upstream.py` checks every vendored upstream file against the
+SHA-256 recorded in the upstream manifests.

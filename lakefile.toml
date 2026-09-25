@@ -1,0 +1,47 @@
+name = "ConjectureA"
+version = "1.0.0"
+defaultTargets = ["GrowthExponent", "Verification"]
+
+# Options are identical to the upstream packages so that the vendored sources
+# elaborate exactly as they did there.
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "5450b53e5ddc75d46418fabb605edbf36bd0beb6"
+
+# ---------------------------------------------------------------------------
+# Vendored upstream (Lech Mazur, Apache-2.0, unmodified; see UPSTREAM/ and NOTICE)
+# ---------------------------------------------------------------------------
+[[lean_lib]]
+name = "Erdos1135"
+
+[[lean_lib]]
+name = "FormalConjectures"
+
+[[lean_lib]]
+name = "CollatzPredecessorDensity"
+
+# ---------------------------------------------------------------------------
+# This repository
+# ---------------------------------------------------------------------------
+[[lean_lib]]
+name = "ThreeXMinusOne"
+roots = ["ThreeXMinusOne.PositiveDensity"]
+
+[[lean_lib]]
+name = "ConjectureA"
+
+[[lean_lib]]
+name = "ConjectureAZ"
+
+[[lean_lib]]
+name = "GrowthExponent"
+
+[[lean_lib]]
+name = "Verification"
+roots = ["Verification.ConjectureAExact"]
