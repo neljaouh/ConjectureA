@@ -162,8 +162,9 @@ lake env leanchecker --fresh ConjectureAZ GrowthExponent
 
 `lake build` already runs the kernel, but through the elaborator's environment. `leanchecker
 --fresh` re-reads the compiled `.olean` files and replays every declaration into an empty
-kernel environment, so it does not trust anything the build cached. Budget about half an hour
-per module. Without `--fresh` it takes about two minutes and is a much weaker check.
+kernel environment, so it does not trust anything the build cached. From the fresh clone,
+`--fresh GrowthExponent` exited 0 after 12 minutes; budget up to half an hour per module.
+Without `--fresh` it takes about two minutes and is a much weaker check.
 
 **Step 4 (optional): confirm the vendored files are untouched.**
 
