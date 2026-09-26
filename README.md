@@ -183,7 +183,7 @@ ConjectureA.lean                 Conjecture A, positive targets           (this 
 ConjectureAZ.lean                Conjecture A over ℤ, AL's exact form     (this repo)
 GrowthExponent.lean              Growth Exponent Conjecture               (this repo)
 ThreeXMinusOne/                  M2 ported to 3x−1, 71 modules            (this repo)
-Verification/ConjectureAExact.lean   from-scratch restatement + axiom walk (this repo)
+Verification.lean, Verification/ConjectureAExact.lean   from-scratch restatement + axiom walk (this repo)
 CollatzPredecessorDensity.lean   M2 public interface                      (Mazur, vendored)
 Erdos1135/                       M1 supporting library + M2 modules       (Mazur, vendored)
 FormalConjectures/               the Collatz map definition               (Formal Conjectures Authors, via M1)
@@ -197,7 +197,7 @@ The Lean files here are the exact import closure of `GrowthExponent`, `Conjectur
 ## Provenance and licence
 
 The files original to this repository (`ConjectureA.lean`, `ConjectureAZ.lean`,
-`GrowthExponent.lean`, `ThreeXMinusOne/`, `Verification/`) are Copyright 2026
+`GrowthExponent.lean`, `ThreeXMinusOne/`, `Verification.lean`, `Verification/`) are Copyright 2026
 Naoufal El Jaouhari and released under the Apache License 2.0 ([LICENSE](LICENSE)).
 Generative AI (Anthropic Claude, via Claude Code) contributed substantially to writing them.
 

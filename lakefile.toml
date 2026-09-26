@@ -31,7 +31,6 @@ name = "CollatzPredecessorDensity"
 # ---------------------------------------------------------------------------
 [[lean_lib]]
 name = "ThreeXMinusOne"
-roots = ["ThreeXMinusOne.PositiveDensity"]
 
 [[lean_lib]]
 name = "ConjectureA"
@@ -44,4 +43,3 @@ name = "GrowthExponent"
 
 [[lean_lib]]
 name = "Verification"
-roots = ["Verification.ConjectureAExact"]
