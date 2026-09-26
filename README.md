@@ -104,8 +104,10 @@ The tree these files were elaborated in (Lean `v4.30.0-rc2`, Mathlib `5450b53e`)
 ## Checking the proof yourself
 
 You do not have to trust any of the above. Everything needed to re-check the proofs from
-source is in this repository plus the pinned Mathlib; the steps below were run from a fresh
-clone of this repository on macOS.
+source is in this repository plus the pinned Mathlib. The steps below were run end to end
+from a fresh clone of this repository on macOS on 2026-09-26; the build ended with
+`Build completed successfully (4028 jobs)`, zero errors, and the messages listed under
+step 2.
 
 **Prerequisites.** `git`, `python3` (only for the provenance script), about 10 GB of free
 disk, and [elan](https://github.com/leanprover/elan), the Lean toolchain manager:
@@ -137,8 +139,10 @@ lake build
 
 This compiles the 463 Lean modules of this repository, in dependency order, against Mathlib.
 Nothing is precompiled here: every proof term is elaborated and kernel-checked on your
-machine. Expect hours on a laptop; Mazur's own notes recommend running nothing else heavy at
-the same time. Three things to look for in the output:
+machine. Measured from a fresh clone on an 8 GB Apple-silicon MacBook, swapping heavily the
+whole time, the build took about 4 h 15 min; with 16 GB or more expect well under that.
+Mazur's own notes recommend running nothing else heavy at the same time. Three things to
+look for in the output:
 
 * `#print axioms` lines from `ConjectureA.lean`, each ending in
   `[propext, Classical.choice, Quot.sound]`;
