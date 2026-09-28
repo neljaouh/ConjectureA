@@ -1,5 +1,7 @@
 # ConjectureA
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23025918.svg)](https://doi.org/10.5281/zenodo.23025918)
+
 Lean 4 proofs of two open conjectures about the 3x+1 (Collatz) problem:
 
 * **Applegate–Lagarias Conjecture A**, exactly as printed in *Density Bounds for the
@@ -19,6 +21,9 @@ The mathematics is written up in the accompanying paper:
 
 > N. El Jaouhari, [*A proof of the Applegate–Lagarias Conjecture A and the 3x+1 growth
 > exponent conjecture*](paper/applegate-lagarias-conjecture-a-proof.pdf), 2026, 15 pages. Preprint, not refereed.
+> Archived on Zenodo: [doi:10.5281/zenodo.23025918](https://doi.org/10.5281/zenodo.23025918)
+> (version 1, 29 September 2026); [doi:10.5281/zenodo.23025917](https://doi.org/10.5281/zenodo.23025917)
+> always resolves to the latest version.
 
 It gives the human-readable proof, including the 3x−1 theorem behind negative targets, and
 describes the verification. Appendix A maps each of its results to the Lean declaration that
