@@ -1,9 +1,9 @@
-main.aux
-main.log
-main.out
-main.blg
-main.xdv
+*.aux
+*.log
+*.out
+*.blg
+*.bbl
+*.xdv
 arxiv-upload.tar.gz
 notes/
-main.bbl
 ARXIV.md
