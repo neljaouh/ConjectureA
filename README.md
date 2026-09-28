@@ -18,7 +18,7 @@ See [What the proof depends on](#what-the-proof-depends-on) before citing anythi
 The mathematics is written up in the accompanying paper:
 
 > N. El Jaouhari, [*A proof of the Applegate–Lagarias Conjecture A and the 3x+1 growth
-> exponent conjecture*](paper/main.pdf), 2026, 17 pages. Preprint, not refereed.
+> exponent conjecture*](paper/main.pdf), 2026, 15 pages. Preprint, not refereed.
 
 It gives the human-readable proof, including the 3x−1 theorem behind negative targets, and
 describes the verification. Appendix A maps each of its results to the Lean declaration that

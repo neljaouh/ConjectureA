@@ -342,7 +342,7 @@ generative AI (OpenAI models used through the ProofAtlas harness) contributed su
 mathematical exploration, the proof development, the formalization and the exposition. Neither
 manuscript reports human peer review. We therefore do not take the correctness of
 Theorem~\ref{thm:input} on the authority of its exposition. It rests on the formal proof, which we
-replayed independently in a fresh kernel environment (Section~\ref{subsec:replay}). The manuscripts
+replayed independently in a fresh kernel environment (Section~\ref{sec:verification}). The manuscripts
 serve here as the human-readable description of the proof's structure.
 
 \subsection{The structure of the proof of Theorem~\ref{thm:input}}\label{subsec:anatomy}
@@ -603,7 +603,8 @@ have no positive return.
 \end{proof}
 
 This is the $3x-1$ analogue of \cite[Lemma~2.3]{MazurM2}. The cycles of $\Sm$ on the positive
-integers, namely $\{1\}$, $\{5,7\}$ and $\{17,25,37,55,41,61,91\}$, play no role. As in
+integers play no role: neither the three known ones, $\{1\}$, $\{5,7\}$ and
+$\{17,25,37,55,41,61,91\}$, nor any other, whose existence is open. As in
 \cite[Lemma~4.1]{MazurM2}, the no-return property is exactly what the distinct-source argument of
 (P3) needs.
 
@@ -633,7 +634,7 @@ index, while the scales grow geometrically.
 \emph{Removing the residue weight (P4).} The residue-class count of \cite[\S4.2]{MazurM2} is applied on $[X,64X)$, where
 each class modulo $3^{k}\le X$ contains at most $66X/3^{k}$ integers, and with the charge constant
 $\E$. The mixing error term becomes at most $88\,\E\,R\,C/m^{2}$, compared with $44RC/m^2$ for
-$3x+1$. Choosing $m=1408\lceil R\rceil C+1$ makes it at most $1/8$. The coarse term is at most
+$3x+1$. Choosing $m=1408RC+1$ makes it at most $1/8$. The coarse term is at most
 $\frac89\,3^{m}U$ as before. Hence
 \[
   U\ \ge\ \eta^{-}:=\frac{9}{64\cdot3^{m}} .
@@ -653,7 +654,8 @@ $X^{-}_a=64(H+1)$. \qed
 \begin{remark}[The formal proof of Theorem~C]\label{rem:formal-C}
 Theorem~C is formally proved as \lean{ThreeXMinusOne.predecessors_positive_lower_density}. The formal proof re-proves the
 sign-sensitive statements of this section and uses the sign-independent lemmas of
-\cite{MazurM1,MazurM2} unchanged. It does not invoke Theorem~\ref{thm:input}. Section~\ref{subsec:deps} gives the dependency data, and
+\cite{MazurM1,MazurM2} unchanged. It does not invoke Theorem~\ref{thm:input}, as a dependency walk confirms
+(Section~\ref{sec:verification}).
 Appendix~\ref{app:map} gives the Lean names of the lemmas above. The exposition of this section
 follows the formal proof step by step.
 \end{remark}
@@ -828,16 +830,12 @@ growth matters.
 \section{Formal verification}\label{sec:verification}
 % ===========================================================================
 
-This section describes how the proof above was certified in the Lean development
-\cite{ConjectureARepo}.
-
-\subsection{Environment and headline theorems}
-The formalization uses Lean \texttt{v4.30.0-rc2} and Mathlib at commit \texttt{5450b53e}, the
-versions pinned by the upstream packages of \cite{MazurM1,MazurM2}. It has 464 modules. Of these,
-388 are the upstream sources, included without modification: 377 from \cite{MazurM1} and 11 from
-\cite{MazurM2}. The remaining 76 are new.
-They consist of 71 modules for Theorem~C, the positive-target and integer assemblies, the growth
-exponent file and two audit modules. The headline theorems are:
+The formalization \cite{ConjectureARepo} uses Lean \texttt{v4.30.0-rc2} and Mathlib at commit
+\texttt{5450b53e}, the versions pinned by the upstream packages of \cite{MazurM1,MazurM2}. It has
+464 modules. Of these, 388 are the upstream sources, included without modification: 377 from
+\cite{MazurM1} and 11 from \cite{MazurM2}, each matching the SHA-256 hash in the published upstream
+manifests. The remaining 76 are new. They consist of 71 modules for Theorem~C, the positive-target
+and integer assemblies, the growth exponent file and two audit modules. The headline theorems are:
 \begin{center}
 \small
 \begin{tabular}{@{}ll@{}}
@@ -852,110 +850,22 @@ Theorem~\ref{thm:input} (input) & \lean{CollatzPredecessorDensity.predecessors_p
 \end{center}
 Each of them, and Proposition~\ref{prop:pos} (\lean{ALConjectureA.conjectureA}), depends only on the
 axioms \texttt{propext}, \texttt{Classical.choice} and \texttt{Quot.sound}. No file contains
-\texttt{sorry}, a new \texttt{axiom} or \texttt{native\_decide}.
+\texttt{sorry}, a new \texttt{axiom} or \texttt{native\_decide}. An audit file restates both
+conjectures using only core Lean and Mathlib notions, discharges them by the theorems above, and
+fails the build if any root depends on a further axiom or if a declaration asserting the universal
+$3x+1$ conjecture is present. A dependency walk confirms Figure~\ref{fig:architecture}: Theorem~C
+does not depend on Theorem~\ref{thm:input}.
 
-\subsection{Statement fidelity}
-Reading a formal statement and comparing it with a printed one by eye is the weakest link in any
-claim of this kind, so we do not rely on it. An audit file restates both conjectures using only
-core Lean and Mathlib notions, namely function iteration, integer arithmetic, set cardinality, the
-real logarithm and filter limits. The restatements refer to no definition of the project. Each is
-then discharged by the corresponding theorem as a bare term. If any definition in the chain
-differed from what is written, or if a theorem had acquired an extra hypothesis, these
-declarations would fail to elaborate.
-
-\begin{lstlisting}
-/-- Applegate-Lagarias Conjecture A, written with no project definitions. -/
-example :
-    (*$\forall$*) a : (*$\mathbb{Z}$*), (*$\neg$*) (3 (*$\mid$*) a) (*$\to$*)
-      (*$\exists$*) c : (*$\mathbb{R}$*), 0 < c (*$\wedge$*) (*$\forall$*) x : (*$\mathbb{R}$*), |(a : (*$\mathbb{R}$*))| (*$\le$*) x (*$\to$*)
-        c * x (*$\le$*) ({ n : (*$\mathbb{Z}$*) | |(n : (*$\mathbb{R}$*))| (*$\le$*) x (*$\wedge$*) (*$\exists$*) k : (*$\mathbb{N}$*),
-          (fun m : (*$\mathbb{Z}$*) => if m % 2 = 0 then m / 2
-                        else (3 * m + 1) / 2)^[k] n = a }.ncard : (*$\mathbb{R}$*)) :=
-  ALConjectureAZ.conjectureA_AL
-
-/-- The growth exponent conjecture, likewise. -/
-example :
-    (*$\forall$*) a : (*$\mathbb{Z}$*), (*$\neg$*) (3 (*$\mid$*) a) (*$\to$*)
-      Filter.liminf (fun x : (*$\mathbb{R}$*) =>
-          Real.log ({ n : (*$\mathbb{Z}$*) | |(n : (*$\mathbb{R}$*))| (*$\le$*) x (*$\wedge$*) (*$\exists$*) k : (*$\mathbb{N}$*),
-            (fun m : (*$\mathbb{Z}$*) => if m % 2 = 0 then m / 2
-                          else (3 * m + 1) / 2)^[k] n = a }.ncard : (*$\mathbb{R}$*))
-            / Real.log x) Filter.atTop = 1 (*$\wedge$*)
-      Filter.limsup (fun x : (*$\mathbb{R}$*) =>
-          Real.log ({ n : (*$\mathbb{Z}$*) | |(n : (*$\mathbb{R}$*))| (*$\le$*) x (*$\wedge$*) (*$\exists$*) k : (*$\mathbb{N}$*),
-            (fun m : (*$\mathbb{Z}$*) => if m % 2 = 0 then m / 2
-                          else (3 * m + 1) / 2)^[k] n = a }.ncard : (*$\mathbb{R}$*))
-            / Real.log x) Filter.atTop = 1 :=
-  ALConjectureAZ.growthExponentConjecture
-\end{lstlisting}
-
-Three Lean conventions could make a statement of this shape mean less than it appears to. We
-checked each one.
-\begin{itemize}[leftmargin=*]
-\item \emph{Integer division.} The map divides $m$ by $2$ only when $m$ is even, and $3m+1$ by $2$
-  only when $m$ is odd, when $3m+1$ is even. Both divisions are exact, so the rounding convention of
-  integer division is irrelevant. The function written is exactly~$T$.
-\item \emph{Cardinality of infinite sets.} \lean{Set.ncard} is $0$ on infinite sets, which could
-  make a lower bound hold vacuously. Here the set lies in $[-x,x]$, and the proof identifies it with
-  an explicit finite count, which is \eqref{eq:pi-Pi}.
-\item \emph{Junk values.} In Mathlib $\log0=0$, and $\liminf$ and $\limsup$ of a real function that
-  is not bounded take a default value. Neither convention is used: $\pi_a(x)\ge1$ for $x\ge|a|$,
-  and the proof establishes genuine convergence, from which both one-sided limits follow.
-\end{itemize}
-
-\subsection{Closedness checks}
-A second command in the audit file walks the transitive dependencies of eight roots. These are the
-four successive forms of Theorem~A, the two forms of Theorem~B, Theorem~C and
-Proposition~\ref{prop:pos}. The command fails the build if it finds an axiom outside the three
-standard ones, or a free variable in the type of a root. A further check fails the build if any
-declaration asserting the universal $3x+1$ conjecture is present. The upstream package deleted the
-unproved universal statement from a file it includes, and the check keeps it absent.
-
-\subsection{Dependency structure}\label{subsec:deps}
-A transitive-closure computation over the Lean environment confirms the architecture of
-Figure~\ref{fig:architecture}. Theorem~A depends on both Theorem~\ref{thm:input} and Theorem~C, and
-Proposition~\ref{prop:pos} depends on Theorem~\ref{thm:input} but not on Theorem~C. Theorem~C does not depend
-on Theorem~\ref{thm:input}, nor on the upstream seed theorem, $3x+1$ counting theorem or telescoped charge
-inequality. Its dependency closure has 43{,}403 declarations: 549 from the new modules, 3{,}970
-from the upstream packages, and the rest from Mathlib and the Lean core. The new modules use 119
-upstream theorems directly. They include the mixing estimate, the residue-selection lemma, the word
-combinatorics, the scale-coverage arithmetic and the non-return lemma for arbitrary maps. A few
-$3x+1$ residue identities also enter, through the substitution of
-Lemma~\ref{lem:neg-correspondence}.
-
-\subsection{Independent kernel replay}\label{subsec:replay}
-\texttt{\#print axioms} and the dependency walk inspect the environment produced by the elaborator.
-They do not re-check the stored proof terms. The toolchain's \texttt{leanchecker} with the option
-\texttt{--fresh} does: it re-reads the compiled files and replays every declaration, including those
-imported from Mathlib and from the upstream packages, into an empty kernel environment.
-We replayed the module \texttt{GrowthExponent}, whose import closure contains Theorems~A, B
-and~C and Theorem~\ref{thm:input}, from a fresh clone of the repository. \texttt{leanchecker --fresh} exited with status~$0$
-after 12~minutes on an 8~GB laptop. Earlier replays of \texttt{ConjectureAZ} and
-\texttt{GrowthExponent} in the development tree, on the same sources, also exited with status~$0$.
-The upstream releases record no replay of this kind \cite{MazurM1,MazurM2}; the replay reported
-here re-checks their declarations as well.
-The replay is informative. It rejects a missing module (exit status~$1$) and a truncated object file
-(exit status~$139$).
-
-\subsection{Provenance and reproducibility}
-A script recomputes the SHA-256 hash of each of the 388 included upstream files. Each matches the
-hash in the published upstream manifests. The 11 files from \cite{MazurM2} are also byte-identical to
-those of its current source release (version~1.1). The repository builds from a fresh clone with
-\texttt{lake exe cache get} followed by \texttt{lake build}. On an 8~GB laptop the cold build of all
-464 modules took about 4~hours 15~minutes. It completed without errors and printed the axiom reports
-and both audit messages.
-
-\subsection{Trusted base, and what the formalization does not cover}
-Accepting Theorems~A and~B on the strength of the formal proof means trusting the Lean kernel, the
-three standard axioms, and the Mathlib definitions that occur in the restated statements. It does
-not require trusting any definition, lemma or proof of this project or of the upstream packages. The
-formalization certifies the theorems, not this exposition. Section~\ref{sec:minus} describes the
-formal proof of Theorem~C and was written from it, but the correspondence is not mechanically
-checked. The same holds for the manuscripts \cite{MazurM1,MazurM2} and the formal proof they describe. During development, three
-lemmas of the $3x-1$ proof compiled and yet had the wrong statement for the lemma that used them.
-All three were found by reading the consuming statement. None survives in the final proof, which is
-checked end to end. A successful build certifies that each term proves its stated type. It does not
-certify that an intermediate statement is the one a human reader would expect.
+The repository builds from a fresh clone with \texttt{lake exe cache get} followed by
+\texttt{lake build}. On an 8~GB Apple-silicon laptop, swapping throughout, the cold build of all
+464 modules took about 4~hours 15~minutes, completed without errors, and printed the axiom reports
+and both audit messages. The build runs the kernel
+through the elaborator's environment. The toolchain's \texttt{leanchecker --fresh} instead replays
+every declaration, including those of Mathlib and of the upstream packages, into an empty kernel
+environment. Run from the fresh clone on the module \texttt{GrowthExponent}, whose import closure
+contains Theorems~A, B and~C and Theorem~\ref{thm:input}, it exited with status~$0$ after
+12~minutes. Accepting the theorems on the strength of the formal proof means trusting the Lean
+kernel, the three axioms, and the Mathlib definitions in the restated statements, and nothing else.
 
 % ===========================================================================
 \section{Constants and limitations}\label{sec:limits}
@@ -1007,11 +917,9 @@ terms of~$a$. We intend to return to the distribution of $3x+1$ trees in separat
 % ===========================================================================
 \section*{Code and data availability}
 % ===========================================================================
-% TODO(author): the repository is private. When it is made public, add
-% \url{https://github.com/neljaouh/ConjectureA} here and in references.bib.
-The complete Lean development is licensed under Apache~2.0 \cite{ConjectureARepo}. It includes the
-upstream sources with their licences and manifests, the audit file and a provenance script. Its
-address is not given in this version of the manuscript.
+The complete Lean development is available under the Apache~2.0 licence at
+\url{https://github.com/neljaouh/ConjectureA} \cite{ConjectureARepo}. It includes the upstream
+sources with their licences and manifests, the audit file and a provenance script.
 Appendix~\ref{app:map} maps the results of this paper to Lean declarations.
 
 \section*{Acknowledgements}
@@ -1072,5 +980,10 @@ Audit & \lean{Verification/ConjectureAExact.lean} \\
 
 \bibliographystyle{amsplain}
 \bibliography{references}
+
+% Bump on every arXiv replacement, together with the commit of the Lean development.
+\bigskip
+\noindent{\footnotesize Version~1, 28 September 2026. The Lean development described is at
+commit \texttt{29805c6}.}
 
 \end{document}
