@@ -13,6 +13,18 @@ The proofs rest on an upstream Lean formalisation of the positive lower density 
 predecessors (the ProofAtlas packages M1 and M2, Apache-2.0), which is vendored here unmodified.
 See [What the proof depends on](#what-the-proof-depends-on) before citing anything.
 
+## Paper
+
+The mathematics is written up in the accompanying paper:
+
+> N. El Jaouhari, [*A proof of the Applegate–Lagarias Conjecture A and the 3x+1 growth
+> exponent conjecture*](paper/main.pdf), 2026, 17 pages. Preprint, not refereed.
+
+It gives the human-readable proof, including the 3x−1 theorem behind negative targets, and
+describes the verification. Appendix A maps each of its results to the Lean declaration that
+proves it. The LaTeX source is in [paper/](paper/); `paper/build.sh` rebuilds the PDF with
+[Tectonic](https://tectonic-typesetting.github.io).
+
 ## The two statements
 
 Written out with no reference to any definition in this tree, exactly as they are
@@ -192,6 +204,7 @@ Verification.lean, Verification/ConjectureAExact.lean   from-scratch restatement
 CollatzPredecessorDensity.lean   M2 public interface                      (upstream, vendored)
 Erdos1135/                       M1 supporting library + M2 modules       (upstream, vendored)
 FormalConjectures/               the Collatz map definition               (Formal Conjectures Authors, via M1)
+paper/                           the paper: main.pdf, LaTeX source        (this repo)
 UPSTREAM/M1, UPSTREAM/M2         upstream README, NOTICE, rights, manifests
 scripts/verify_upstream.py       checks every vendored file against the upstream manifests
 ```
@@ -205,6 +218,8 @@ The files original to this repository (`ConjectureA.lean`, `ConjectureAZ.lean`,
 `GrowthExponent.lean`, `ThreeXMinusOne/`, `Verification.lean`, `Verification/`) are Copyright 2026
 Naoufal El Jaouhari and released under the Apache License 2.0 ([LICENSE](LICENSE)).
 Generative AI (Anthropic Claude, via Claude Code) contributed substantially to writing them.
+The paper in [paper/](paper/) is Copyright 2026 Naoufal El Jaouhari and is not covered by the
+Apache licence.
 
 The remaining 388 Lean files are redistributed **byte-for-byte unmodified** from two
 Apache-2.0 source packages released on ProofAtlas:
