@@ -37,7 +37,7 @@ example :
           (Erdos1135.Terras.natCount
             {n : ℕ | 0 < n ∧ ∃ m : ℕ,
               (fun t : ℕ => if t % 2 = 0 then t / 2 else 3 * t - 1)^[m] n = a} X : ℝ) :=
-  ThreeXMinusOne.mazurM2Neg
+  ThreeXMinusOne.predecessors_positive_lower_density
 
 /-- The growth exponent conjecture, likewise written from scratch. -/
 example :
@@ -59,7 +59,7 @@ run_cmd do
   let roots := #[`ALConjectureAZ.conjectureA_AL, `ALConjectureAZ.conjectureAZReal,
     `ALConjectureAZ.conjectureAZ', `ALConjectureAZ.conjectureAZ,
     `ALConjectureAZ.growthExponentConjecture, `ALConjectureAZ.tendsto_growthRatio,
-    `ThreeXMinusOne.mazurM2Neg, `ALConjectureA.conjectureA]
+    `ThreeXMinusOne.predecessors_positive_lower_density, `ALConjectureA.conjectureA]
   for root in roots do
     unless env.contains root do throwError "Missing theorem {root}"
     let some info := env.find? root | throwError "Missing declaration {root}"

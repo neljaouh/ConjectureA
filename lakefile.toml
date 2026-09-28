@@ -15,7 +15,7 @@ scope = "leanprover-community"
 rev = "5450b53e5ddc75d46418fabb605edbf36bd0beb6"
 
 # ---------------------------------------------------------------------------
-# Vendored upstream (Lech Mazur, Apache-2.0, unmodified; see UPSTREAM/ and NOTICE)
+# Vendored upstream (Apache-2.0, unmodified; see UPSTREAM/ and NOTICE)
 # ---------------------------------------------------------------------------
 [[lean_lib]]
 name = "Erdos1135"

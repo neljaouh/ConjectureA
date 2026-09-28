@@ -64,7 +64,7 @@ theorem sourceM_mul_atomM_le_root (hrootOdd : ∀ i, Odd (root i))
 
 /-- **The incidence charge inequality with a depth-independent exponent.**
 
-This, not `sourceM_mul_atomM_le_root`, is the form `MazurM2Neg` needs.  The worst-case version
+This, not `sourceM_mul_atomM_le_root`, is the form `PredecessorDensity` needs.  The worst-case version
 forces `δ ≥ 2·depth/(3R−1)`, and `…CommonFloorShifted_depth_le_logGap` makes `depth` grow like
 `log Y` while the seed root is fixed before `Y` is quantified — so `δ` could not be held
 constant and the density constant would decay like `1/log Y`.

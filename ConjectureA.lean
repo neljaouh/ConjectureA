@@ -3,7 +3,7 @@ import CollatzPredecessorDensity
 /-!
 # Applegate–Lagarias Conjecture A, discharged against the M2 artifact
 
-This file lives **inside the ProofAtlas M1+M2 tree**, so `MazurM2` is not a hypothesis here:
+This file lives **inside the ProofAtlas M1+M2 tree**, so M2 is not a hypothesis here:
 `CollatzPredecessorDensity.predecessors_positive_lower_density` is available as a theorem, and
 Conjecture A is derived from it with no hypothesis of its own.
 

@@ -5,7 +5,7 @@ import Erdos1135.ND.PositiveDensity.PredecessorAnalyticSupport
 import Erdos1135.ND.PositiveDensity.ExplicitNumericalSyracuseMixing
 
 /-!
-# `MazurM2Neg`
+# `PredecessorDensity`
 
 `generalTarget_predecessors_positive_lower_density`, mirrored: the `3x−1` predecessors of any
 target `a` with `0 < a` and `3 ∤ a` have positive lower density.
@@ -27,8 +27,8 @@ open Erdos1135 Erdos1135.ND.PositiveDensity
 
 noncomputable section
 
-/-- **Mazur's M2 for the `3x−1` map.** -/
-theorem mazurM2Neg : MazurM2Neg := by
+/-- **Positive lower density of `3x−1` predecessors** (M2 for the `3x−1` map). -/
+theorem predecessors_positive_lower_density : PredecessorDensity := by
   classical
   intro a ha hthree
   set C : ℕ := explicitSyracuseMixingCoefficient with hCdef

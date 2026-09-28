@@ -5,7 +5,7 @@ import Mathlib.Tactic
 /-!
 # The `3x−1` map and its accelerated (Syracuse) form
 
-Layer 0 of the port of Mazur's M2 to `3x−1`.  Every declaration here mirrors, one for one, a
+Layer 0 of the port of M2 to `3x−1`.  Every declaration here mirrors, one for one, a
 declaration of the artifact's `Erdos1135.Tao.Syracuse.Basic` / `CollatzBridge` / `ParityBridge`
 for `3x+1`.  Truncated subtraction is avoided throughout by carrying the cleared form
 `2^e * syrM N + 1 = 3 * N` instead of `2^e * syrM N = 3 * N - 1`.

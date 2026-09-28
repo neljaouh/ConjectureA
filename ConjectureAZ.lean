@@ -7,7 +7,7 @@ import ThreeXMinusOne.PositiveDensity
 Applegate–Lagarias state Conjecture A for `a ∈ ℤ`.  `ALConjectureA.conjectureA` proves it for
 positive targets only; its own "Scope" note says the negative case is Conjecture A for `3x−1`.
 
-That map is no longer outside the tree: `ThreeXMinusOne.mazurM2Neg` proves M2 for it.  This file
+That map is no longer outside the tree: `ThreeXMinusOne.predecessors_positive_lower_density` proves M2 for it.  This file
 is the assembly.  Nothing here is deep — it is the conjugation `n ↦ −n`, a `ℕ → ℤ` cast, and the
 two counting injections — but without it the `ℤ` statement has no proof term.
 
@@ -15,7 +15,7 @@ Three things had to be supplied that no file contained:
 
 * the `ℕ → ℤ` cast for the **accelerated** map, so the positive half can be read at `ℤ`-shaped
   targets (`syrZ_natCast`);
-* the `a ≡ 4 (mod 6)` case on the negative side.  `ThreeXMinusOne.mazurM2Neg` counts *ordinary*
+* the `a ≡ 4 (mod 6)` case on the negative side.  `ThreeXMinusOne.predecessors_positive_lower_density` counts *ordinary*
   `3x−1` predecessors, and ordinary and accelerated reachability part company exactly at
   `4 (mod 6)`.  The positive file dodges this with `syr (2a) = a`; the same dodge works here
   because `syrZ (2A) = A`, and `A % 6 = 4 → (2A) % 6 ≠ 4` (`two_mul_mod_six_Z`).  Both lemmas
@@ -44,7 +44,7 @@ def reachesSyrZ (n a : ℤ) : Prop := ∃ k : ℕ, syrZ^[k] n = a
 /-! ## 2. Negation conjugates the negative dynamics onto `3x−1`
 
 `ThreeXMinusOne.colM` is the ordinary `3x−1` map on `ℕ`; this is the conjugacy that makes
-`mazurM2Neg` a statement about negative Collatz targets. -/
+`ThreeXMinusOne.predecessors_positive_lower_density` a statement about negative Collatz targets. -/
 
 /-- `colZ (−m) = −(colM m)` for `m ≥ 1`: the defining conjugation. -/
 theorem neg_colZ {m : ℕ} (hm : 1 ≤ m) :
@@ -236,7 +236,7 @@ theorem piAZ_mono {a b : ℤ} (h : ∀ n : ℤ, reachesSyrZ n a → reachesSyrZ 
 
 /-! ## 7. The two counting injections
 
-Both `ALConjectureA.piA` and `ThreeXMinusOne.MazurM2Neg` count with `Terras.natCount`, which is
+Both `ALConjectureA.piA` and `ThreeXMinusOne.PredecessorDensity` count with `Terras.natCount`, which is
 `Nat.count` at a classical instance; `piAZ` is a `Finset.card`.  This is the bridge. -/
 
 theorem natCount_eq_card_filter (s : Set ℕ) (X : ℕ) [DecidablePred (fun n => n ∈ s)] :
@@ -287,9 +287,9 @@ theorem conjectureAZ_pos (a : ℕ) (ha : 0 < a) (h3 : ¬ 3 ∣ a) :
 /-- **Negative targets, from M2 for `3x−1`.**
 
 The `≡ 4 (mod 6)` case is the one the shortint file left open: there the ordinary count that
-`MazurM2Neg` supplies is the *larger* set, so it does not transfer.  `syrZ (2A) = A` moves the
+`PredecessorDensity` supplies is the *larger* set, so it does not transfer.  `syrZ (2A) = A` moves the
 target to `2A`, where `two_mul_mod_six_Z` says the residue obstruction is gone. -/
-theorem conjectureAZ_neg_of_mazurM2Neg (hNeg : ThreeXMinusOne.MazurM2Neg)
+theorem conjectureAZ_neg_of_predecessorDensity (hNeg : ThreeXMinusOne.PredecessorDensity)
     (a : ℕ) (ha : 0 < a) (h3 : ¬ 3 ∣ a) :
     ∃ c : ℝ, 0 < c ∧ ∃ x₀ : ℕ, ∀ x : ℕ, x₀ ≤ x → c * x ≤ (piAZ (-(a : ℤ)) x : ℝ) := by
   have hdouble : (-((2 * a : ℕ) : ℤ)) = 2 * (-(a : ℤ)) := by push_cast; ring
@@ -313,14 +313,14 @@ theorem conjectureAZ_neg_of_mazurM2Neg (hNeg : ThreeXMinusOne.MazurM2Neg)
 /-! ## 9. Conjecture A over `ℤ` -/
 
 /-- **Conjecture A over `ℤ` from M2 for `3x−1`.**  The `3x+1` half needs no hypothesis here. -/
-theorem conjectureAZ_of_mazurM2Neg (hNeg : ThreeXMinusOne.MazurM2Neg) : ConjectureAZ := by
+theorem conjectureAZ_of_predecessorDensity (hNeg : ThreeXMinusOne.PredecessorDensity) : ConjectureAZ := by
   intro a h3
   rcases lt_trichotomy a 0 with hneg | hzero | hpos
   · have hA : a = -((a.natAbs : ℕ) : ℤ) := by omega
     have ha : 0 < a.natAbs := by omega
     have h3' : ¬ 3 ∣ a.natAbs := fun hd => h3 (by omega)
     rw [hA]
-    exact conjectureAZ_neg_of_mazurM2Neg hNeg _ ha h3'
+    exact conjectureAZ_neg_of_predecessorDensity hNeg _ ha h3'
   · exact absurd (hzero ▸ (dvd_zero (3 : ℤ))) h3
   · have hA : a = ((a.natAbs : ℕ) : ℤ) := by omega
     have ha : 0 < a.natAbs := by omega
@@ -330,10 +330,10 @@ theorem conjectureAZ_of_mazurM2Neg (hNeg : ThreeXMinusOne.MazurM2Neg) : Conjectu
 
 /-- **Conjecture A over `ℤ`, unconditionally.**
 
-`ALConjectureA.conjectureA` supplies the positive targets and `ThreeXMinusOne.mazurM2Neg` the
+`ALConjectureA.conjectureA` supplies the positive targets and `ThreeXMinusOne.predecessors_positive_lower_density` the
 negative ones.  Both are theorems in this tree; neither is an axiom or a hypothesis. -/
 theorem conjectureAZ : ConjectureAZ :=
-  conjectureAZ_of_mazurM2Neg ThreeXMinusOne.mazurM2Neg
+  conjectureAZ_of_predecessorDensity ThreeXMinusOne.predecessors_positive_lower_density
 
 /-! ## 10. Applegate–Lagarias's own threshold
 

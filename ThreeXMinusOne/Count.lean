@@ -29,9 +29,9 @@ def predecessorSetM (a : ℕ) : Set ℕ := {n | 0 < n ∧ ReachesM n a}
 def HasPositiveLowerDensity (s : Set ℕ) : Prop :=
   ∃ c : ℝ, 0 < c ∧ ∃ X0 : ℕ, ∀ X : ℕ, X0 ≤ X → c * (X : ℝ) ≤ (Terras.natCount s X : ℝ)
 
-/-- **Mazur's M2 for the `3x−1` map**, stated exactly as
+/-- **Positive lower density of `3x−1` predecessors** (M2 for the `3x−1` map), stated exactly as
 `CollatzPredecessorDensity.predecessors_positive_lower_density` states it for `3x+1`. -/
-def MazurM2Neg : Prop :=
+def PredecessorDensity : Prop :=
   ∀ a : ℕ, 0 < a → ¬ 3 ∣ a → HasPositiveLowerDensity (predecessorSetM a)
 
 /-- **The counting core.**  A window of sources carrying total mass `η`, each charged at most

@@ -4,23 +4,25 @@ Conjecture for the 3x+1 (Collatz) problem.
 Copyright 2026 Naoufal El Jaouhari.
 
 The files ConjectureA.lean, ConjectureAZ.lean, GrowthExponent.lean, the
-ThreeXMinusOne/ directory and Verification/ConjectureAExact.lean are original
-to this repository and are licensed under the Apache License, Version 2.0
-(see LICENSE). Generative AI (Anthropic Claude, via Claude Code) contributed
+ThreeXMinusOne/ directory, Verification.lean and Verification/ConjectureAExact.lean
+are original to this repository and are licensed under the Apache License,
+Version 2.0 (see LICENSE). Generative AI (Anthropic Claude, via Claude Code) contributed
 substantially to writing these proofs.
 
 This repository also redistributes, byte-for-byte unmodified, Lean source files
-from two Apache-2.0 packages authored by Lech Mazur:
+from two Apache-2.0 packages released on ProofAtlas:
 
   * "Explicit Positive-Density Collatz Convergence in Logarithmic Time",
     source package version 2.1 (the Erdos1135/ and FormalConjectures/ trees).
-    Copyright 2026 Lech Mazur. Original README, NOTICE, RIGHTS.md, license.json
-    and source manifests are kept under UPSTREAM/M1/.
+    Its copyright and attribution notices are reproduced unchanged in
+    UPSTREAM/M1/NOTICE, together with its README, RIGHTS.md, license.json and
+    source manifests.
 
-  * "Positive Lower Density of Collatz Predecessors" (CollatzPredecessorDensity.lean
-    and ten modules under Erdos1135/ND/PositiveDensity/ and Erdos1135/StoppingTime.lean).
-    Copyright 2026 Lech Mazur. Original README, NOTICE, RIGHTS.md, license.json
-    and source manifests are kept under UPSTREAM/M2/.
+  * "Positive Lower Density of Collatz Predecessors" (CollatzPredecessorDensity.lean,
+    Erdos1135/StoppingTime.lean and ten modules under Erdos1135/ND/PositiveDensity/).
+    Its copyright and attribution notices are reproduced unchanged in
+    UPSTREAM/M2/NOTICE, together with its README, RIGHTS.md, license.json and
+    source manifests.
 
 The retained file under FormalConjectures/ keeps its original attribution:
 Copyright 2025 The Formal Conjectures Authors, Apache License, Version 2.0.

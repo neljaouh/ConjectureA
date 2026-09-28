@@ -7,7 +7,7 @@ import ThreeXMinusOne.ShellIncidence
 
 These are what make the selected-word map injective, and injectivity is what turns the sum over
 incidences into a sum over words — the first step of the mass identity that is all that now
-stands between these layers and `MazurM2Neg`.
+stands between these layers and `PredecessorDensity`.
 
 The mirror is trivial in content: the argument is that the depth of a first crossing is
 determined by the full word, which is residue-independent reasoning.  The residue enters only
