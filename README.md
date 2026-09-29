@@ -122,9 +122,10 @@ The tree these files were elaborated in (Lean `v4.30.0-rc2`, Mathlib `5450b53e`)
 
 You do not have to trust any of the above. Everything needed to re-check the proofs from
 source is in this repository plus the pinned Mathlib. The steps below were run end to end
-from a fresh clone of this repository on macOS on 2026-09-26; the build ended with
+from a fresh clone of this repository on macOS on 2026-09-26, and again on 2026-09-29 at
+commit `29805c6` (the Lean sources the paper describes); both times the build ended with
 `Build completed successfully (4028 jobs)`, zero errors, and the messages listed under
-step 2.
+step 2, and step 3 exited 0.
 
 **Prerequisites.** `git`, `python3` (only for the provenance script), about 10 GB of free
 disk, and [elan](https://github.com/leanprover/elan), the Lean toolchain manager:
@@ -180,7 +181,9 @@ lake env leanchecker --fresh ConjectureAZ GrowthExponent
 `lake build` already runs the kernel, but through the elaborator's environment. `leanchecker
 --fresh` re-reads the compiled `.olean` files and replays every declaration into an empty
 kernel environment, so it does not trust anything the build cached. From the fresh clone,
-`--fresh GrowthExponent` exited 0 after 12 minutes; budget up to half an hour per module.
+`--fresh GrowthExponent` exited 0 after 12 minutes on an otherwise idle 8 GB laptop, and after
+1 h 41 min on the same machine while another kernel replay was competing for its memory; budget
+an hour or two to be safe.
 Without `--fresh` it takes about two minutes and is a much weaker check.
 
 **Step 4 (optional): confirm the vendored files are untouched.**
