@@ -1,3 +1,6 @@
+\ifdefined\pdfoutput\else\newcount\pdfoutput\fi % lets XeLaTeX read the next line
+\pdfoutput=1 % arXiv: compile with pdfLaTeX (keep within the first five lines)
+\ifdefined\XeTeXversion\pdfoutput=0\fi % XeTeX and Tectonic: restore the default
 \documentclass[11pt]{amsart}
 
 % ---------------------------------------------------------------------------
@@ -94,7 +97,6 @@
 {A proof of the Applegate--Lagarias Conjecture~A\\ and the $3x+1$ growth exponent conjecture}
 
 \author{Naoufal El Jaouhari}
-% TODO(author): add affiliation, or keep "Independent researcher".
 \address{Independent researcher}
 \email{neljaouh@gmail.com}
 
@@ -937,8 +939,6 @@ the Mathlib community for the library on which the formalization rests.
 % ===========================================================================
 \section*{Use of generative AI}
 % ===========================================================================
-% TODO(author): keep, shorten or adapt this statement. arXiv asks authors to disclose
-% substantive use of generative AI tools and to take full responsibility for the content.
 Generative AI (Anthropic's Claude, used through Claude Code) was used extensively to develop the
 Lean formalization of Theorem~C and of the reductions in Sections~\ref{sec:accel}--\ref{sec:growth},
 and to draft this manuscript. The upstream packages \cite{MazurM1,MazurM2} were likewise developed with
